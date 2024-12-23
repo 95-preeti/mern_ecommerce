@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import loginIcons from '../assest/signin.gif'
 import { Link } from 'react-router-dom';
 import imageTobase64 from '../helpers/imageTobase64';
+import SummaryApi from '../common';
 
 function SignUp() {
     const [data,setData] =useState({
@@ -37,9 +38,28 @@ function SignUp() {
 
     }
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = async(e) =>{
         e.preventDefault()
-    }
+
+        if(data.password === data.confirmPassword){
+          const dataResponse = await fetch(SummaryApi.signUp.url,{
+            method : SummaryApi.signUp.method,
+            headers: {
+                    "content-type" : "application/json"
+            },
+            body:JSON.stringify(data)
+          })
+  
+          const dataApi = await dataResponse.json()
+  
+          console.log("data",dataApi)
+      }else{
+        console.log("Please check password and confirm password")
+      }
+        }
+
+        
+
 
     console.log("data login",data)
 
