@@ -35,7 +35,7 @@ async function userSignUpController(req,res) {
         }
 
         const userData = new userModel(req.body)
-        const saveUser = userData.save()
+        const saveUser = await userData.save()
 
         res.status(201).json({
             data : saveUser,
