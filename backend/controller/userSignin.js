@@ -19,7 +19,7 @@ async function userSignInController(req,res){
             throw new Error("User not found")
        }
 
-       const checkPassword = await bcrypt.compare(password,user.password)
+       const checkPassword =   bcrypt.compare(password,user.password)
 
        console.log("checkPassoword",checkPassword)
 
@@ -35,7 +35,7 @@ async function userSignInController(req,res){
             secure : true
         }
 
-        res.cookie("token",token,tokenOption).json({
+        res.cookie("token",token,tokenOption).status(200).json({
             message : "Login successfully",
             data : token,
             success : true,
@@ -63,7 +63,3 @@ async function userSignInController(req,res){
 }
 
 module.exports = userSignInController
-
-
-
-
