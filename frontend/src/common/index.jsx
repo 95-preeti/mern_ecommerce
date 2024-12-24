@@ -8,6 +8,10 @@ const SummaryApi ={
     signIn : {
         url: `${backendDomin}/api/signin`,
         method : "POST"
+    },
+    current_user :{
+         url: `${backendDomin}/api/user-details`,
+        method : "GET"
     }
 }
 
